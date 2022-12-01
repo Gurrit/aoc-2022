@@ -1,9 +1,9 @@
-FROM gradle:alpine as BASE
+FROM maven:alpine as BASE
 WORKDIR /app
 COPY ./ .
-RUN gradle build
+RUN mvn package
 
 FROM openjdk:17-alpine
-COPY --from=BASE /app/build/libs/kotlinapp-1.0.0.jar /kotlinapp.jar
+COPY --from=BASE /app/target/aoc-day01-1-jar-with-dependencies.jar /day01.jar
 COPY input.txt .
-CMD java -jar /kotlinapp.jar
+CMD java -jar /day01.jar
