@@ -1,0 +1,1 @@
+import java.io.File fun main(): Unit = println(File("input.txt").readText().let { inp -> if (System.getenv("part") == "part2") inp.windowed(4, 1, false).asSequence().map { it.toList().distinct().size }.indexOfFirst { it == 4 } + 4 else inp.windowed(14, 1, false).asSequence().map { it.toList().distinct().size }.indexOfFirst { it == 14 } + 14 } )
